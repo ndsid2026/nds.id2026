@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【セキュリティ訓練】警告ページ</title>
+    <style>
+        body { font-family: sans-serif; margin: 0; padding: 50px 20px; text-align: center; background-color: #f4f6f9; color: #333; }
+        .container { border-top: 8px solid #d9534f; padding: 40px; background: white; display: inline-block; max-width: 600px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        h1 { color: #d9534f; font-size: 24px; margin-bottom: 20px; }
+        p { font-size: 16px; line-height: 1.6; color: #555; text-align: left; }
+        .notice { background-color: #fcf8e3; border: 1px solid #faebcc; color: #8a6d3b; padding: 15px; border-radius: 4px; margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>⚠️ 標的型攻撃メール訓練</h1>
+        <p>これは社内で実施しているセキュリティ訓練用のページです。実際のウイルス感染や情報漏洩などの被害はありませんのでご安心ください。</p>
+        <p>しかし、あなた宛てに届いた怪しいメールのURL（リンク）をクリックしてしまったため、このページが表示されました。</p>
+        <div class="notice">
+            今後は、メールの送信元アドレスや、記載されているURLが本物かどうかを必ず確認してください。
+        </div>
+    </div>
+
+    <script>
+        // URLの末尾（?id=xxxx）を取得
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('id') || 'unknown'; 
+
+        // 無料のアクセスカウンターアプリ（GoatCounter）の公開サーバーにログを安全に転送します
+        // あなた専用の集計ページの名前（何でもOKですが、今回は「kunren-log-2026」とします）
+        const mySiteName = "kunren-log-2026"; 
+
+        window.goatcounter = {
+            path: function(p) { return 'click_' + userId; } // 誰がクリックしたかを識別する名前を記録
+        };
+    </script>
+    <script data-goatcounter="https://kunren-log-2026.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+</body>
+</html>
